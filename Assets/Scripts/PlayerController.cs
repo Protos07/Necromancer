@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     private float horizontal;
     public float speed = 0f;
     public float jumpingPower = 16f;
     private bool isFacingRight = true;
+    public float range;
+    public LayerMask enemies;
 
     public VariableJoystick joystick;
 
@@ -16,19 +18,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    public GameObject WeaponHolder;
 
-
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = WeaponHolder.GetComponent<Animator>();
     }
 
     void Update()
     {
-        horizontal = joystick.Horizontal ;
+        horizontal = joystick.Horizontal;
 
-        
+
         Flip();
     }
 
@@ -65,4 +69,18 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
+
+    public void Attack()
+    {
+        anim.SetBool("IsAttack", true);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(WeaponHolder.transform.position, range, enemies);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("hit");
+        }
+
+
+    }
+
 }
