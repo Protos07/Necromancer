@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyHealth : Health
 {
-    
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
+
+        if (health_bar.value == 0)
+        {
+            Debug.Log("You killed him!");
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     public float range;
     public LayerMask enemies;
+    public float delay;
 
     public VariableJoystick joystick;
 
@@ -21,11 +23,14 @@ public class PlayerController : MonoBehaviour
     public GameObject WeaponHolder;
 
     private Animator anim;
+    private bool attackBlocked;
+    private Health health;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = WeaponHolder.GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     void Update()
@@ -72,15 +77,24 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
+        if (attackBlocked)
+            return;
         anim.SetBool("IsAttack", true);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(WeaponHolder.transform.position, range, enemies);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("hit");
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            enemyHealth.ApplyDamage(health.damage);
         }
-
+        attackBlocked = true;
+        StartCoroutine(DelayAttack());
 
     }
 
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(delay);
+        attackBlocked = false;
+    }
 }
