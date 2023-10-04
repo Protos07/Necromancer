@@ -84,8 +84,8 @@ public class PlayerController : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            enemyHealth.ApplyDamage(health.damage);
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();           
+            enemyHealth.ApplyDamage(health._damage);
         }
         attackBlocked = true;
         StartCoroutine(DelayAttack());

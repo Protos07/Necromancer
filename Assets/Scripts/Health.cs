@@ -9,7 +9,9 @@ public class Health : MonoBehaviour
     public float maxHealth;
     public Slider health_bar;
     public Slider health_bar_fill;
-    public float damage;
+    [SerializeField]public float _damage;
+    public float max_damage;
+    public float min_damage;
 
     public float speed;
 
@@ -19,6 +21,8 @@ public class Health : MonoBehaviour
         {
             health_bar.value = health;
         }
+        
+        
     }
 
     
@@ -26,14 +30,18 @@ public class Health : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ApplyDamage(damage);
+            ApplyDamage(_damage);
 
         }
+        //FIX IT!!!!
+        _damage = (Random.Range(min_damage, max_damage));
+        //
         health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
     }
 
     public void ApplyDamage(float damage)
-    {
-        health_bar.value -= damage;
+    {       
+        health_bar.value -= damage;       
     }
+
 }
