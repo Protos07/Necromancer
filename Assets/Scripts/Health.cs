@@ -21,8 +21,8 @@ public class Health : MonoBehaviour
         {
             health_bar.value = health;
         }
-        
-        
+
+        _damage = (Random.Range(min_damage, max_damage));
     }
 
     
@@ -30,12 +30,9 @@ public class Health : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ApplyDamage(_damage);
+            ApplyDamage(_damage = (Random.Range(min_damage, max_damage)));
 
         }
-        //FIX IT!!!!
-        _damage = (Random.Range(min_damage, max_damage));
-        //
         health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
     }
 
@@ -44,4 +41,5 @@ public class Health : MonoBehaviour
         health_bar.value -= damage;       
     }
 
+    
 }
