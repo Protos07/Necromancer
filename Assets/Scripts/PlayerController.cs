@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        
     }
     private bool IsGrounded()
     {
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         anim.SetBool("IsAttack", true);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(WeaponHolder.transform.position, range, enemies);
-
+        
         foreach (Collider2D enemy in hitEnemies)
         {
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
@@ -97,5 +98,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
     }
-    
+
 }
