@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,8 +83,9 @@ public class PlayerController : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();           
-            enemyHealth.ApplyDamage(health._damage);
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            enemyHealth.ApplyDamage((Random.Range(health.min_damage, health.max_damage)));
+            
         }
         attackBlocked = true;
         StartCoroutine(DelayAttack());
@@ -97,4 +97,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
     }
+    
 }
