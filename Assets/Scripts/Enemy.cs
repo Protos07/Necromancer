@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private float distance;
     private EnemyHealth cast_enemy_health;
     private bool attackBlocked;
-
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -69,7 +69,20 @@ public class Enemy : MonoBehaviour
         if (Attack_distance >= distance)
         {            
             Attack();
+
         }
+
+        if ((isFacingRight && player.position.x > transform.position.x) || (!isFacingRight && player.position.x < transform.position.x))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+       
+
+
+
     }
     public void Attack()
     {
