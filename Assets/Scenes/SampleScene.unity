@@ -718,7 +718,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200870860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -13.00827, y: 0.4500003, z: -10}
+=======
+  m_LocalPosition: {x: 0.984958, y: 0.4500003, z: -10}
+>>>>>>> parent of 7a7ea3e (added fancing for enemies)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1496,7 +1500,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466059570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -13.68, y: -0.9587128, z: -0.06369131}
+=======
+  m_LocalPosition: {x: 0.31322706, y: -0.9587128, z: -0.06369131}
+>>>>>>> parent of 7a7ea3e (added fancing for enemies)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1734,7 +1742,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -13.00827, y: 0.4500003, z: -10}
+=======
+  m_LocalPosition: {x: 0.984958, y: 0.4500003, z: -10}
+>>>>>>> parent of 7a7ea3e (added fancing for enemies)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2055,16 +2067,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7606454402581242935, guid: 6daa1da2db6fee54787e54d488830905, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7606454402581242935, guid: 6daa1da2db6fee54787e54d488830905, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
 <<<<<<< HEAD
       value: 17.11
 =======
       value: 16.202587
 >>>>>>> main
+=======
+      value: 16.64
+>>>>>>> parent of 7a7ea3e (added fancing for enemies)
       objectReference: {fileID: 0}
     - target: {fileID: 7606454402581242935, guid: 6daa1da2db6fee54787e54d488830905, type: 3}
       propertyPath: m_LocalPosition.y
