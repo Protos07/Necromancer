@@ -9,7 +9,7 @@ public class EnemyHealth : Health
     {        
         health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
              
-        if (health_bar.value == 0.8)
+        if (health_bar.value == 0)
         {
             Debug.Log("You killed him!");
             Destroy(this.gameObject);
