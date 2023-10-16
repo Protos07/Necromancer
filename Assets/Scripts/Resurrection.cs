@@ -5,6 +5,7 @@ using UnityEngine;
 public class Resurrection : Enemy
 {
     public GameObject resurrection_object;
+    public GameObject Player;
 
 
 

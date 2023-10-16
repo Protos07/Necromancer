@@ -5,9 +5,13 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     private Collider2D col;
+    public Enemy enemy_cast;
+    public Transform player;
     public void Start()
     {
-        Enemy enemy_cast = GetComponent<Enemy>();
+        enemy_cast = GetComponent<Enemy>();
+        col = GetComponent<Collider2D>();
+
     }
     public void Update()
     {        
@@ -15,8 +19,8 @@ public class EnemyHealth : Health
              
         if (health_bar.value == 0)
         {
-            Debug.Log("You killed him!");           
-
+            enemy_cast.enabled = false;
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 }
