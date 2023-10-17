@@ -27,9 +27,9 @@ public class Ability : MonoBehaviour
             EnemyHealth cast_enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (cast_enemyHealth.health_bar.value == 0)
             {
-
-                Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
                 Destroy(enemy);
+                Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
+
                 Debug.Log("work");
             }
 

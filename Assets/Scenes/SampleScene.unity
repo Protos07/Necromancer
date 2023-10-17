@@ -2085,6 +2085,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 362564425}
+    - target: {fileID: 7606454402581242933, guid: 6daa1da2db6fee54787e54d488830905, type: 3}
+      propertyPath: Resurrection_object
+      value: 
+      objectReference: {fileID: 7606454402581242920, guid: b866f0671dc5bcc45818081033fb32b1, type: 3}
     - target: {fileID: 7606454402581242935, guid: 6daa1da2db6fee54787e54d488830905, type: 3}
       propertyPath: m_RootOrder
       value: 3

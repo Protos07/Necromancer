@@ -19,8 +19,9 @@ public class EnemyHealth : Health
              
         if (health_bar.value == 0)
         {
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), col);
             enemy_cast.enabled = false;
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            
         }
     }
 }
