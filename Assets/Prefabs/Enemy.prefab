@@ -529,6 +529,10 @@ MonoBehaviour:
   isFollowPlayer: 0
   Attack_distance: 2
   delay: 2
+  distance: 0
+  attackBlocked: 0
+  start_position: {x: 0, y: 0}
+  name_FollowObject: Player
 --- !u!114 &7606454402581242933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +553,8 @@ MonoBehaviour:
   max_damage: 0.2
   min_damage: 0.1
   speed: 0.08
+  enemy_cast: {fileID: 0}
+  player: {fileID: 0}
 --- !u!50 &7814690718006653461
 Rigidbody2D:
   serializedVersion: 4

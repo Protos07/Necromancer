@@ -8,9 +8,11 @@ public class Ability : MonoBehaviour
     public GameObject player;
     public float range;
     public GameObject Resurrection_object;
+
+    private Mana cast_mana;
     void Start()
     {
-        
+        cast_mana = player.GetComponent<Mana>();
     }
 
     // Update is called once per frame
@@ -27,10 +29,9 @@ public class Ability : MonoBehaviour
             EnemyHealth cast_enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (cast_enemyHealth.health_bar.value == 0)
             {
-                Destroy(enemy);
+                cast_mana.mana_bar.value -= 0.2f;
                 Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
-
-                Debug.Log("work");
+                Destroy(enemy.gameObject);
             }
 
         }

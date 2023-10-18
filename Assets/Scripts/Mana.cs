@@ -25,10 +25,9 @@ public class Mana : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (mana_bar.value != Mana_value)
         {
-            
-
+            mana_bar.value += 0.01f;
         }
         mana_fill_bar.value = Mathf.Lerp(mana_fill_bar.value, mana_bar.value, speed);
     }
