@@ -482,16 +482,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: e47635146bc00e74fa38aeaa30c0ddae, type: 3}
 =======
   m_Sprite: {fileID: 21300000, guid: eeffaf0dc311be44a84324aa92792aa6, type: 3}
 >>>>>>> ac77fa41ff919631c76ea8855328dfa5a64488b2
   m_Type: 0
-=======
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
->>>>>>> parent of c6c0653 (fixed ui)
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -760,16 +755,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: e47635146bc00e74fa38aeaa30c0ddae, type: 3}
 =======
   m_Sprite: {fileID: 21300000, guid: eeffaf0dc311be44a84324aa92792aa6, type: 3}
 >>>>>>> ac77fa41ff919631c76ea8855328dfa5a64488b2
   m_Type: 0
-=======
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
->>>>>>> parent of c6c0653 (fixed ui)
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1190,6 +1180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1679793956}
   setting: {fileID: 624901714}
+  exit_panel: {fileID: 0}
+  main: {fileID: 0}
 --- !u!114 &823948200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,16 +1580,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: e47635146bc00e74fa38aeaa30c0ddae, type: 3}
 =======
   m_Sprite: {fileID: 21300000, guid: eeffaf0dc311be44a84324aa92792aa6, type: 3}
 >>>>>>> ac77fa41ff919631c76ea8855328dfa5a64488b2
   m_Type: 0
-=======
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
->>>>>>> parent of c6c0653 (fixed ui)
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1809,16 +1796,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: e47635146bc00e74fa38aeaa30c0ddae, type: 3}
 =======
   m_Sprite: {fileID: 21300000, guid: eeffaf0dc311be44a84324aa92792aa6, type: 3}
 >>>>>>> ac77fa41ff919631c76ea8855328dfa5a64488b2
   m_Type: 0
-=======
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
->>>>>>> parent of c6c0653 (fixed ui)
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
