@@ -57,10 +57,4 @@ public class MainMenu : MonoBehaviour
         menu.SetActive(true);
         exit_panel.SetActive(false);
     }
-
-    public void ExitToMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-    }
 }
