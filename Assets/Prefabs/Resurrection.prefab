@@ -407,11 +407,11 @@ GameObject:
   - component: {fileID: 7606454402581242935}
   - component: {fileID: 7606454402581242934}
   - component: {fileID: 7606454402581242921}
-  - component: {fileID: 7606454402581242932}
+  - component: {fileID: 4905072498192565271}
   - component: {fileID: 7606454402581242933}
   - component: {fileID: 7814690718006653461}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Resurrection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
+  m_Color: {r: 0.5387048, g: 0.8018868, b: 0.2912513, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -512,7 +512,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7606454402581242932
+--- !u!114 &4905072498192565271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -521,18 +521,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7606454402581242920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21be738ceaa40849b3d1c4414fc3da9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1b1913c88fd5a4dba37273c0e57c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 3
+  player: {fileID: 1047693160768202118, guid: 47185d1c9d0d7b847a61ab552be53377, type: 3}
+  speed: 4
   isFollowPlayer: 0
   Attack_distance: 2
   delay: 2
   distance: 0
   attackBlocked: 0
   start_position: {x: 0, y: 0}
-  name_FollowObject: Player
+  name_FollowObject: Enemy
+  distance_toPlayer: 4
 --- !u!114 &7606454402581242933
 MonoBehaviour:
   m_ObjectHideFlags: 0

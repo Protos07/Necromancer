@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EnemyHealth : Health
 {
+    private Collider2D col;
+    public Enemy enemy_cast;
+    public Transform player;
+    public void Start()
+    {
+        enemy_cast = GetComponent<Enemy>();
+        col = GetComponent<Collider2D>();
 
+    }
     public void Update()
     {        
         health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
              
         if (health_bar.value == 0)
         {
-            Debug.Log("You killed him!");
-            Destroy(this.gameObject);
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), col);
+            enemy_cast.enabled = false;
+            
         }
     }
 }

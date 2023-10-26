@@ -9,13 +9,15 @@ public class Enemy : MonoBehaviour
     public bool isFollowPlayer = false;
     public float Attack_distance;
     public float delay;
+    public float distance;
+    public bool attackBlocked;
+    public Vector2 start_position;
+    public string name_FollowObject;
 
     private Rigidbody2D rb;
-    private Vector2 start_position;
+    
     private Vector2 player_transform;
-    private float distance;
-    private EnemyHealth cast_enemy_health;
-    private bool attackBlocked;
+    private EnemyHealth cast_enemy_health;  
     private bool isFacingRight = true;
 
     void Start()
@@ -38,7 +40,7 @@ public class Enemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(name_FollowObject))
         {
             if (isFollowPlayer == false)
             {
@@ -54,7 +56,7 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(name_FollowObject))
         {
             isFollowPlayer = false;
             
