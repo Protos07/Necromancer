@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21be738ceaa40849b3d1c4414fc3da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1047693160768202118, guid: 47185d1c9d0d7b847a61ab552be53377, type: 3}
   speed: 3
   isFollowPlayer: 0
   Attack_distance: 2

@@ -2,35 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resurrection : Enemy
+public class Resurrection : MonoBehaviour
 {
     public float distance_toPlayer;
 
+    public Transform player;
+    public bool isFollowPlayer = false;
+    public Vector2 start_position;
+    public float speed;
+
+    private bool isFacingRight = true;
+    public float distance;
+
+    public void Start()
+    {
+        player.gameObject = GameObject.FindWithTag("Respawn");
+    }
     public void Update()
     {
         if (distance_toPlayer <= distance)
         {
-            Move();
-        }
+            Vector2 player_transform = new Vector2(player.transform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
 
+
+        }
+        distance = Vector2.Distance(transform.position, player.transform.position);
+
+        if ((isFacingRight && player.position.x > transform.position.x) || (!isFacingRight && player.position.x < transform.position.x))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
 
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(name_FollowObject))
+        if (collision.gameObject.CompareTag("Player") == false)
         {
-            if (isFollowPlayer == false)
-            {
-                start_position = new Vector2(transform.position.x, transform.position.y);
-                isFollowPlayer = true;
-
-            }
+            start_position = new Vector2(transform.position.x, transform.position.y);
+            isFollowPlayer = true;
 
         }
 
-
     }
+
+
     //public void Attack()
     //{
     //    if (attackBlocked)
