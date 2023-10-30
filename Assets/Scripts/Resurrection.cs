@@ -10,24 +10,28 @@ public class Resurrection : MonoBehaviour
     public bool isFollowPlayer = false;
     public Vector2 start_position;
     public float speed;
+    public GameObject player_Tag;
+    public float distance;
+    public float delay;
+    public float Attack_distance;
 
     private bool isFacingRight = true;
-    public float distance;
+    private bool attackBlocked;
 
     public void Start()
     {
-        player.gameObject = GameObject.FindWithTag("Respawn");
+        player = GameObject.FindWithTag("Player").transform; 
     }
     public void Update()
     {
         if (distance_toPlayer <= distance)
         {
-            Vector2 player_transform = new Vector2(player.transform.position.x, transform.position.y);
+            Vector2 player_transform = new Vector2(player.position.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
 
 
         }
-        distance = Vector2.Distance(transform.position, player.transform.position);
+        distance = Vector2.Distance(transform.position, player.position);
 
         if ((isFacingRight && player.position.x > transform.position.x) || (!isFacingRight && player.position.x < transform.position.x))
         {
@@ -48,29 +52,32 @@ public class Resurrection : MonoBehaviour
 
         }
 
+        if (collision.gameObject.CompareTag("Enemy") == true)
+        {
+            if (Attack_distance >= distance)
+            {
+                Attack();
+
+            }
+
+        }
+
     }
 
 
-    //public void Attack()
-    //{
-    //    if (attackBlocked)
-    //        return;
-    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(WeaponHolder.transform.position, range, enemies);
+    public void Attack()
+    {
+        if (attackBlocked)
+            return;
+        
+        attackBlocked = true;
+        StartCoroutine(DelayAttack());
 
-    //    foreach (Collider2D enemy in hitEnemies)
-    //    {
-    //        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-    //        enemyHealth.ApplyDamage((Random.Range(health.min_damage, health.max_damage)));
+    }
 
-    //    }
-    //    attackBlocked = true;
-    //    StartCoroutine(DelayAttack());
-
-    //}
-
-    //private IEnumerator DelayAttack()
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //    attackBlocked = false;
-    //}
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(delay);
+        attackBlocked = false;
+    }
 }
