@@ -7,16 +7,20 @@ public class Resurrection : MonoBehaviour
     public float distance_toPlayer;
 
     public Transform player;
-    public bool isFollowPlayer = false;
     public Vector2 start_position;
     public float speed;
     public GameObject player_Tag;
     public float distance;
     public float delay;
     public float Attack_distance;
+    public GameObject Attack_point;
+    public float range;
+    public LayerMask enemies;
 
     private bool isFacingRight = true;
     private bool attackBlocked;
+    private Vector2 FollowObject_transform;
+    private bool isFollowEnemy = false;
 
     public void Start()
     {
@@ -24,42 +28,31 @@ public class Resurrection : MonoBehaviour
     }
     public void Update()
     {
-        if (distance_toPlayer <= distance)
+        Move();
+        distance = Vector2.Distance(transform.position, FollowObject_transform);
+
+        if (isFollowEnemy == true)
         {
-            Vector2 player_transform = new Vector2(player.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
-
-
-        }
-        distance = Vector2.Distance(transform.position, player.position);
-
-        if ((isFacingRight && player.position.x > transform.position.x) || (!isFacingRight && player.position.x < transform.position.x))
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            Attack();
         }
 
     }
     public void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Player") == false)
-        {
-            start_position = new Vector2(transform.position.x, transform.position.y);
-            isFollowPlayer = true;
-
-        }
+    {     
 
         if (collision.gameObject.CompareTag("Enemy") == true)
+        {           
+            isFollowEnemy = true;
+            FollowObject_transform = collision.gameObject.transform.position;
+        }
+
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (Attack_distance >= distance)
-            {
-                Attack();
-
-            }
-
+            isFollowEnemy = false;
+ 
         }
 
     }
@@ -69,12 +62,40 @@ public class Resurrection : MonoBehaviour
     {
         if (attackBlocked)
             return;
-        
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(Attack_point.transform.position, range, enemies);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+ 
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            enemyHealth.ApplyDamage(0.2f);
+            
+
+        }
         attackBlocked = true;
         StartCoroutine(DelayAttack());
 
     }
+    private void Move()
+    {
+        if (isFollowEnemy == false)
+            FollowObject_transform = new Vector2(player.position.x, transform.position.y);
 
+        if (distance_toPlayer <= distance)
+        {            
+           transform.position = Vector2.MoveTowards(transform.position, FollowObject_transform, speed * Time.deltaTime);
+
+
+        }
+
+
+        if ((isFacingRight && FollowObject_transform.x > transform.position.x) || (!isFacingRight && FollowObject_transform.x < transform.position.x))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
     private IEnumerator DelayAttack()
     {
         yield return new WaitForSeconds(delay);
