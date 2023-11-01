@@ -4,69 +4,83 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player;
     public float speed;
-    public bool isFollowPlayer = false;
+    public bool isFollowObject = false;
     public float Attack_distance;
     public float delay;
     public float distance;
     public bool attackBlocked;
-    public Vector2 start_position;
     public string name_FollowObject;
 
     private Rigidbody2D rb;
-    
-    private Vector2 player_transform;
-    private EnemyHealth cast_enemy_health;  
+
+    public GameObject AttackObject;
+    private EnemyHealth cast_enemy_health;
     private bool isFacingRight = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cast_enemy_health = GetComponent<EnemyHealth>();
+        //AttackObject = GameObject.FindWithTag("Player");
     }
 
-    
+
     void Update()
     {
-        
-        if (isFollowPlayer == true)
+
+        if (isFollowObject == true)
         {
             Move();
         }
-        distance = Vector2.Distance(transform.position, player.transform.position);
+        if (AttackObject != null)
+            distance = Vector2.Distance(transform.position, AttackObject.transform.position);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.CompareTag(name_FollowObject))
-        {
-            if (isFollowPlayer == false)
+
+        if (collision.gameObject.CompareTag("Resurrection"))
+        {          
+            if (isFollowObject == false)
             {
-                start_position = new Vector2(transform.position.x, transform.position.y);
-                isFollowPlayer = true;
+                AttackObject = collision.gameObject;
+                isFollowObject = true;
 
             }
 
         }
-          
-        
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            if (isFollowObject == false)
+            {
+                AttackObject = collision.gameObject;
+                isFollowObject = true;
+
+            }
+        }
+
+
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(name_FollowObject))
-        {
-            isFollowPlayer = false;
-            
+        if (collision.gameObject.CompareTag("Player"))
+        {           
+            isFollowObject = false;
+
         }
-        
+
+        else if (collision.gameObject.CompareTag("Resurrection"))
+        {
+            isFollowObject = false;
+
+        }
     }
 
     public void Move()
     {
-        Vector2 player_transform = new Vector2(player.transform.position.x, transform.position.y);
+        Vector2 player_transform = new Vector2(AttackObject.transform.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
         if (Attack_distance >= distance)
         {            
@@ -74,7 +88,7 @@ public class Enemy : MonoBehaviour
 
         }
 
-        if ((isFacingRight && player.position.x > transform.position.x) || (!isFacingRight && player.position.x < transform.position.x))
+        if ((isFacingRight && AttackObject.transform.position.x > transform.position.x) || (!isFacingRight && AttackObject.transform.position.x < transform.position.x))
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
@@ -90,7 +104,7 @@ public class Enemy : MonoBehaviour
     {
         if (attackBlocked)
             return;
-        Health health = player.GetComponent<Health>();
+        Health health = AttackObject.GetComponent<Health>();
         health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
         attackBlocked = true;
         StartCoroutine(DelayAttack());
@@ -102,7 +116,7 @@ public class Enemy : MonoBehaviour
     }
     public void ReturnToStart()
     {
-        rb.MovePosition(start_position);
+
     }
 
     private IEnumerator DelayAttack()
