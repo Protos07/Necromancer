@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public float delay;
     public float distance;
     public bool attackBlocked;
-    public string name_FollowObject;
+    public GameObject triagle;
 
     private Rigidbody2D rb;
 
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        if (isFollowObject == true)
+        if (isFollowObject == true && AttackObject != null)
         {
             Move();
         }
@@ -38,43 +38,34 @@ public class Enemy : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Resurrection"))
-        {          
-            if (isFollowObject == false)
-            {
-                AttackObject = collision.gameObject;
-                isFollowObject = true;
-
-            }
-
-        }
-        else if (collision.gameObject.CompareTag("Player"))
+    {     
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            if (isFollowObject == false)
+            if(isFollowObject == false )
             {
-                AttackObject = collision.gameObject;
-                isFollowObject = true;
+                RaycastHit2D hit = Physics2D.Raycast(triagle.transform.position, Vector2.left);
 
+                if (hit.collider != null)
+                {
+                    AttackObject = hit.collider.gameObject;
+                    isFollowObject = true;
+                }
             }
+            
         }
-
 
     }
 
     public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {           
-            isFollowObject = false;
-
-        }
-
-        else if (collision.gameObject.CompareTag("Resurrection"))
+    {      
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            isFollowObject = false;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position , Vector2.left);
 
+            if (hit.collider != null)
+            {
+                AttackObject = hit.collider.gameObject;
+            }
         }
     }
 

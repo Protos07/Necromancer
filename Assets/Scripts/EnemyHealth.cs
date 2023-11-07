@@ -7,11 +7,13 @@ public class EnemyHealth : Health
     private Collider2D col;
     public Enemy enemy_cast;
     public Transform player;
+
+    private Rigidbody2D rb;
     public void Start()
     {
         enemy_cast = GetComponent<Enemy>();
         col = GetComponent<Collider2D>();
-
+        rb = GetComponent<Rigidbody2D>();
     }
     public void Update()
     {        
@@ -19,9 +21,15 @@ public class EnemyHealth : Health
              
         if (health_bar.value == 0)
         {
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), col);
+            col.isTrigger = true;
+            Destroy(rb);
+            if (this.gameObject.CompareTag("Resurrection"))
+            {
+                Destroy(this.gameObject);              
+            }
+                
             enemy_cast.enabled = false;
-            
+           
         }
     }
 }

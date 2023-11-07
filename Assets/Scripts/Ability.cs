@@ -8,11 +8,13 @@ public class Ability : MonoBehaviour
     public GameObject player;
     public float range;
     public GameObject Resurrection_object;
+    public int amount;
 
     private Mana cast_mana;
     void Start()
     {
         cast_mana = player.GetComponent<Mana>();
+        
     }
 
     // Update is called once per frame
@@ -27,10 +29,11 @@ public class Ability : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             EnemyHealth cast_enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (cast_enemyHealth.health_bar.value == 0)
+            if (cast_enemyHealth.health_bar.value == 0 && amount != 4)
             {
                 cast_mana.mana_bar.value -= 0.2f;
                 Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
+                amount = amount + 1;
                 Destroy(enemy.gameObject);
             }
 

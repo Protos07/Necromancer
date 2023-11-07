@@ -187,10 +187,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7606454401292031802}
   - component: {fileID: 7606454401292031803}
-  - component: {fileID: 4726081161269844313}
-  m_Layer: 0
+  - component: {fileID: 67709871694550717}
+  m_Layer: 2
   m_Name: Triangle
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4726081161269844313
+--- !u!61 &67709871694550717
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,7 +275,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4}
+  m_Offset: {x: 1.1164751, y: 3.566967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -286,7 +286,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 15}
+  m_Size: {x: 5.125279, y: 11.7987}
   m_EdgeRadius: 0
 --- !u!1 &7606454401360745005
 GameObject:
@@ -524,15 +524,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21be738ceaa40849b3d1c4414fc3da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1047693160768202118, guid: 47185d1c9d0d7b847a61ab552be53377, type: 3}
   speed: 3
-  isFollowPlayer: 0
+  isFollowObject: 0
   Attack_distance: 2
   delay: 2
   distance: 0
   attackBlocked: 0
-  start_position: {x: 0, y: 0}
-  name_FollowObject: Player
+  triagle: {fileID: 7606454401292031805}
+  AttackObject: {fileID: 0}
 --- !u!114 &7606454402581242933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +553,7 @@ MonoBehaviour:
   min_damage: 0.1
   speed: 0.08
   enemy_cast: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 7589959953486815583, guid: 47185d1c9d0d7b847a61ab552be53377, type: 3}
 --- !u!50 &7814690718006653461
 Rigidbody2D:
   serializedVersion: 4
