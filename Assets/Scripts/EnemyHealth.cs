@@ -1,19 +1,22 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class EnemyHealth : Health
 {
     private Collider2D col;
     public Enemy enemy_cast;
     public Transform player;
+    public Ability abil;
 
+    private GameObject abil_object;
     private Rigidbody2D rb;
     public void Start()
     {
         enemy_cast = GetComponent<Enemy>();
         col = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();      
     }
     public void Update()
     {        
@@ -24,7 +27,7 @@ public class EnemyHealth : Health
             col.isTrigger = true;
             Destroy(rb);
             if (this.gameObject.CompareTag("Resurrection"))
-            {
+            {               
                 Destroy(this.gameObject);              
             }
                 

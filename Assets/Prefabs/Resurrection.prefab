@@ -564,6 +564,7 @@ MonoBehaviour:
   speed: 0.08
   enemy_cast: {fileID: 0}
   player: {fileID: 0}
+  abil_button: {fileID: 4001334039921787566, guid: 6473de3e0abc94747935287c659a75c8, type: 3}
 --- !u!50 &7814690718006653461
 Rigidbody2D:
   serializedVersion: 4
