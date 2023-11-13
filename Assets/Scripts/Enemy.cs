@@ -14,43 +14,47 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public GameObject AttackObject;
+    public List<GameObject> AttackObject_List;
     private EnemyHealth cast_enemy_health;
+    private GameObject AttackObject;
     private bool isFacingRight = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cast_enemy_health = GetComponent<EnemyHealth>();
-        //AttackObject = GameObject.FindWithTag("Player");
+        //AttackObject_List = GameObject.FindWithTag("Player");
     }
 
 
     void Update()
     {
 
-        if (isFollowObject == true && AttackObject != null)
+        if (isFollowObject == true && AttackObject_List != null)
         {
             Move();
         }
         if (AttackObject != null)
             distance = Vector2.Distance(transform.position, AttackObject.transform.position);
+        else
+            GetObject();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {     
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            if(isFollowObject == false )
-            {
-                RaycastHit2D hit = Physics2D.Raycast(triagle.transform.position, Vector2.left);
+            AttackObject_List.Add(collision.gameObject);
 
-                if (hit.collider != null)
-                {
-                    AttackObject = hit.collider.gameObject;
-                    isFollowObject = true;
-                }
-            }
+            //if(isFollowObject == false )
+            //{
+
+            //    if (hit.collider != null)
+            //    {
+            //        AttackObject_List = hit.collider.gameObject;
+            //        isFollowObject = true;
+            //    }
+            //}
             
         }
 
@@ -60,12 +64,14 @@ public class Enemy : MonoBehaviour
     {      
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position , Vector2.left);
+            AttackObject_List.Remove(collision.gameObject);
 
-            if (hit.collider != null)
-            {
-                AttackObject = hit.collider.gameObject;
-            }
+            
+
+            //if (hit.collider != null)
+            //{
+            //    AttackObject_List = hit.collider.gameObject;
+            //}
         }
     }
 
@@ -74,7 +80,7 @@ public class Enemy : MonoBehaviour
         Vector2 player_transform = new Vector2(AttackObject.transform.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
         if (Attack_distance >= distance)
-        {            
+        {
             Attack();
 
         }
@@ -86,19 +92,17 @@ public class Enemy : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
-       
-
 
 
     }
     public void Attack()
     {
-        if (attackBlocked)
-            return;
-        Health health = AttackObject.GetComponent<Health>();
-        health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
-        attackBlocked = true;
-        StartCoroutine(DelayAttack());
+        //if (attackBlocked)
+        //    return;
+        //Health health = AttackObject_List.GetComponent<Health>();
+        //health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
+        //attackBlocked = true;
+        //StartCoroutine(DelayAttack());
 
     }
     public void Patrol()
@@ -114,5 +118,17 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
+    }
+
+    public void GetObject()
+    {
+        for(int i = 0; i < AttackObject_List.Count; i++)
+        {
+            if (AttackObject_List.Count == i);
+            {
+                AttackObject = AttackObject[i];
+            }
+
+        }
     }
 }
