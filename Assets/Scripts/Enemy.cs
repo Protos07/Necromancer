@@ -124,9 +124,9 @@ public class Enemy : MonoBehaviour
     {
         for(int i = 0; i < AttackObject_List.Count; i++)
         {
-            if (AttackObject_List.Count == i);
+            if (AttackObject_List.Count == i)
             {
-                AttackObject = AttackObject[i];
+                AttackObject = AttackObject_List[i];
             }
 
         }
