@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     public List<GameObject> AttackObject_List;
     private EnemyHealth cast_enemy_health;
-    private GameObject AttackObject;
+    public GameObject AttackObject;
     private bool isFacingRight = true;
 
     void Start()
@@ -124,8 +124,9 @@ public class Enemy : MonoBehaviour
     {
         for(int i = 0; i < AttackObject_List.Count; i++)
         {
-            if (AttackObject_List.Count == i)
-            {
+            Debug.Log("rar");
+            if (AttackObject_List.Count == i && AttackObject_List[i] != null)
+            {             
                 AttackObject = AttackObject_List[i];
             }
 
