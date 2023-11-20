@@ -30,7 +30,7 @@ public class EnemyHealth : Health
             {               
                 Destroy(this.gameObject);              
             }
-                
+            
             enemy_cast.enabled = false;
            
         }

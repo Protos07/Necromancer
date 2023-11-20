@@ -22,8 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        cast_enemy_health = GetComponent<EnemyHealth>();
-        //AttackObject_List = GameObject.FindWithTag("Player");
+        cast_enemy_health = GetComponent<EnemyHealth>();      
     }
 
 
@@ -33,9 +32,8 @@ public class Enemy : MonoBehaviour
         if (isFollowObject == true && AttackObject_List != null)
         {
             Move();
-        }
-        if (AttackObject != null)
             distance = Vector2.Distance(transform.position, AttackObject.transform.position);
+        }            
         else
             GetObject();
     }
@@ -44,17 +42,7 @@ public class Enemy : MonoBehaviour
     {     
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            AttackObject_List.Add(collision.gameObject);
-
-            //if(isFollowObject == false )
-            //{
-
-            //    if (hit.collider != null)
-            //    {
-            //        AttackObject_List = hit.collider.gameObject;
-            //        isFollowObject = true;
-            //    }
-            //}
+            AttackObject_List.Add(collision.gameObject);          
             
         }
 
@@ -64,14 +52,17 @@ public class Enemy : MonoBehaviour
     {      
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Resurrection"))
         {
-            AttackObject_List.Remove(collision.gameObject);
-
-            
-
-            //if (hit.collider != null)
-            //{
-            //    AttackObject_List = hit.collider.gameObject;
-            //}
+            AttackObject_List.Remove(collision.gameObject);            
+            if (AttackObject_List.Count == 0)
+            {
+                isFollowObject = false;
+                AttackObject = null;
+            }
+            else
+            {             
+                GetObject();
+            }    
+                         
         }
     }
 
@@ -97,13 +88,12 @@ public class Enemy : MonoBehaviour
     }
     public void Attack()
     {
-        //if (attackBlocked)
-        //    return;
-        //Health health = AttackObject_List.GetComponent<Health>();
-        //health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
-        //attackBlocked = true;
-        //StartCoroutine(DelayAttack());
-
+        if (attackBlocked)
+            return;
+        Health health = AttackObject.GetComponent<Health>();
+        health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
+        attackBlocked = true;
+        StartCoroutine(DelayAttack());
     }
     public void Patrol()
     {
@@ -124,10 +114,10 @@ public class Enemy : MonoBehaviour
     {
         for(int i = 0; i < AttackObject_List.Count; i++)
         {
-            Debug.Log("rar");
-            if (AttackObject_List.Count == i && AttackObject_List[i] != null)
+            if (AttackObject_List[i] != null)
             {             
                 AttackObject = AttackObject_List[i];
+                isFollowObject = true;
             }
 
         }

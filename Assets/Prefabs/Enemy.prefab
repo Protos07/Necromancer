@@ -526,11 +526,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   isFollowObject: 0
-  Attack_distance: 2
+  Attack_distance: 3
   delay: 2
   distance: 0
   attackBlocked: 0
   triagle: {fileID: 7606454401292031805}
+  AttackObject_List: []
   AttackObject: {fileID: 0}
 --- !u!114 &7606454402581242933
 MonoBehaviour:
@@ -554,6 +555,7 @@ MonoBehaviour:
   speed: 0.08
   enemy_cast: {fileID: 0}
   player: {fileID: 7589959953486815583, guid: 47185d1c9d0d7b847a61ab552be53377, type: 3}
+  abil: {fileID: 0}
 --- !u!50 &7814690718006653461
 Rigidbody2D:
   serializedVersion: 4

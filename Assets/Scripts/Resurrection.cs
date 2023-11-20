@@ -22,6 +22,7 @@ public class Resurrection : MonoBehaviour
     private Vector2 FollowObject_transform;
     private bool isFollowEnemy = false;
 
+
     public void Start()
     {
         player = GameObject.FindWithTag("Player").transform; 
@@ -34,6 +35,7 @@ public class Resurrection : MonoBehaviour
         if (isFollowEnemy == true)
         {
             Attack();
+            
         }
 
     }
@@ -41,15 +43,17 @@ public class Resurrection : MonoBehaviour
     {     
 
         if (collision.gameObject.CompareTag("Enemy") == true)
-        {           
+        {
+            Debug.Log("true");
             isFollowEnemy = true;
             FollowObject_transform = collision.gameObject.transform.position;
+            
         }
 
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") )
         {
             isFollowEnemy = false;
  
@@ -69,7 +73,6 @@ public class Resurrection : MonoBehaviour
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             enemyHealth.ApplyDamage(0.2f);
             
-
         }
         attackBlocked = true;
         StartCoroutine(DelayAttack());

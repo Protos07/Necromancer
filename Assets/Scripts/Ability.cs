@@ -10,7 +10,9 @@ public class Ability : MonoBehaviour
     public GameObject Resurrection_object;
     public int amount;
 
+
     private Mana cast_mana;
+    
     void Start()
     {
         cast_mana = player.GetComponent<Mana>();
@@ -25,18 +27,21 @@ public class Ability : MonoBehaviour
 
     public void Resurrection()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(player.transform.position, range, enemies);
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            EnemyHealth cast_enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (cast_enemyHealth.health_bar.value == 0 && amount != 4)
+        
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(player.transform.position, range, enemies);
+            foreach (Collider2D enemy in hitEnemies)
             {
-                cast_mana.mana_bar.value -= 0.2f;
-                Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
-                amount = amount + 1;
-                Destroy(enemy.gameObject);
-            }
+                EnemyHealth cast_enemyHealth = enemy.GetComponent<EnemyHealth>();
+                if (cast_enemyHealth.health_bar.value == 0 && amount != 4)
+                {
+                    cast_mana.mana_bar.value -= 0.2f;
+                    Instantiate(Resurrection_object, enemy.transform.position, enemy.transform.rotation);
+                    amount = amount + 1;
+                    Destroy(enemy.gameObject);
+                }
 
-        }
+            }
+        
     }
+       
 }
