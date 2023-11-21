@@ -24,6 +24,10 @@ public class EnemyHealth : Health
              
         if (health_bar.value == 0)
         {
+            if (this.gameObject.CompareTag("Enemy"))
+            {
+                this.gameObject.tag = "Dead";
+            }
             col.isTrigger = true;
             Destroy(rb);
             if (this.gameObject.CompareTag("Resurrection"))

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Resurrection
   - Ignore
+  - Dead
   layers:
   - Default
   - TransparentFX

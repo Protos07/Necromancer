@@ -34,9 +34,9 @@ public class Resurrection : MonoBehaviour
 
         if (isFollowEnemy == true)
         {
-            Attack();
-            
+            Attack();      
         }
+
 
     }
     public void OnTriggerEnter2D(Collider2D collision)
@@ -44,10 +44,8 @@ public class Resurrection : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy") == true)
         {
-            Debug.Log("true");
             isFollowEnemy = true;
             FollowObject_transform = collision.gameObject.transform.position;
-            
         }
 
     }
@@ -72,7 +70,8 @@ public class Resurrection : MonoBehaviour
  
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             enemyHealth.ApplyDamage(0.2f);
-            
+            if (enemyHealth.health_bar.value <= 0)
+                isFollowEnemy = false;
         }
         attackBlocked = true;
         StartCoroutine(DelayAttack());
