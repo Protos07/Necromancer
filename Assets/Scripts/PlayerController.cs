@@ -21,14 +21,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject WeaponHolder;
 
-    private Animator anim;
+    //private Animator anim;
     private bool attackBlocked;
     private Health health;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = WeaponHolder.GetComponent<Animator>();
+        //anim = WeaponHolder.GetComponent<Animator>();
         health = GetComponent<Health>();
     }
 
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (attackBlocked)
             return;
-        anim.SetBool("IsAttack", true);
+        //anim.SetBool("IsAttack", true);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(WeaponHolder.transform.position, range, enemies);
         
         foreach (Collider2D enemy in hitEnemies)

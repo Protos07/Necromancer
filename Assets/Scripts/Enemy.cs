@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
+        
         if (isFollowObject == true && AttackObject_List != null)
         {
             Move();
@@ -94,6 +94,7 @@ public class Enemy : MonoBehaviour
         health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
         attackBlocked = true;
         StartCoroutine(DelayAttack());
+        Debug.Log("hit");
     }
     public void Patrol()
     {
