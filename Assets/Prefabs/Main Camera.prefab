@@ -3736,6 +3736,7 @@ MonoBehaviour:
   setting: {fileID: 4001334039905095137}
   exit_panel: {fileID: 4001334039032509938}
   main: {fileID: 4001334038139863189}
+  Dead: {fileID: 0}
 --- !u!114 &4001334039733453021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3754,7 +3755,7 @@ MonoBehaviour:
   player: {fileID: 0}
   range: 8
   Resurrection_object: {fileID: 7606454402581242920, guid: b866f0671dc5bcc45818081033fb32b1, type: 3}
-  amount: 0
+  Resurrection_list: []
 --- !u!1 &4001334039777297330
 GameObject:
   m_ObjectHideFlags: 0

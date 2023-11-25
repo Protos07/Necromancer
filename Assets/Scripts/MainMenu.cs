@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject setting;
     public GameObject exit_panel;
     public GameObject main;
+    public GameObject Dead;
 
     public void EnterSetting()
     {
@@ -62,5 +63,10 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

@@ -22,7 +22,7 @@ public class EnemyHealth : Health
     {        
         health_bar_fill.value = Mathf.Lerp(health_bar_fill.value, health_bar.value, speed);
              
-        if (health_bar.value == 0)
+        if (health_bar.value <= 0.08)
         {
             if (this.gameObject.CompareTag("Enemy"))
             {

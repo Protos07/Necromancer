@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour
         
         if (isFollowObject == true && AttackObject_List != null)
         {
-            Move();
             distance = Vector2.Distance(transform.position, AttackObject.transform.position);
+            Move();          
         }            
         else
             GetObject();
@@ -68,21 +68,25 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
-        Vector2 player_transform = new Vector2(AttackObject.transform.position.x, transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
-        if (Attack_distance >= distance)
+        if(distance <= 10)
         {
-            Attack();
+            Vector2 player_transform = new Vector2(AttackObject.transform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, player_transform, speed * Time.deltaTime);
+            if (Attack_distance >= distance)
+            {
+                Attack();
 
-        }
+            }
 
-        if ((isFacingRight && AttackObject.transform.position.x > transform.position.x) || (!isFacingRight && AttackObject.transform.position.x < transform.position.x))
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            if ((isFacingRight && AttackObject.transform.position.x > transform.position.x) || (!isFacingRight && AttackObject.transform.position.x < transform.position.x))
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
         }
+        
 
 
     }
@@ -94,7 +98,6 @@ public class Enemy : MonoBehaviour
         health.ApplyDamage((Random.Range(cast_enemy_health.min_damage, cast_enemy_health.max_damage)));
         attackBlocked = true;
         StartCoroutine(DelayAttack());
-        Debug.Log("hit");
     }
     public void Patrol()
     {

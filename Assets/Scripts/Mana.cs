@@ -27,7 +27,7 @@ public class Mana : MonoBehaviour
     {
         if (mana_bar.value != Mana_value)
         {
-            mana_bar.value += 0.01f;
+            mana_bar.value += 0.02f * Time.deltaTime;
         }
         mana_fill_bar.value = Mathf.Lerp(mana_fill_bar.value, mana_bar.value, speed);
     }
